@@ -1,0 +1,126 @@
+{
+ "provenance": {
+  "file": "/content/afgml-p9/data/raw/bank-additional-full.csv",
+  "sha256": "74adfc578bf77a7ff4bb1ba4a9f8709d9e3c6907342959c2c8416847e0afb4d8",
+  "rows": 41188,
+  "cols": 21,
+  "n_yes": 4640,
+  "accessed": "2026-11-07",
+  "source": "UCI Bank Marketing, dataset 222 (Moro, Rita, Cortez), CC BY 4.0",
+  "matches_published_uci_counts": true
+ },
+ "checks": [
+  {
+   "requirement": "Pre-contact only: no 'duration'/post-contact column in any split",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Provenance recorded (SHA-256, rows, access date)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Dataset matches published UCI counts (41,188 x 21; 4,640 yes)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 1: VE (3 heuristics) = clique tree = enumeration <= 1e-6 (fitted BN, real + masked evidence)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 1: random-network C-GM passes",
+   "status": "PASS"
+  },
+  {
+   "requirement": "VE with >=2 elimination heuristics + clique tree + sum-product calibration",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Factor-entry ops and peak factor size measured",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 2: cost/peak/memory across natural + synthetic workloads",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Deterministic operation budgets (op counts, not wall-clock)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 3: fallback rate + flips by group + approximation error",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 4: proposed vs global/util/threshold-adjusted/fair-exact at matched utility",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Group-unaware routing comparison (proposed_unaware never uses protected attr)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Predictive baselines: logistic regression + gradient-boosted trees",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Exp 5: synthetic networks incl. no-group-dependence control",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Ablations A1-A4 present",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Robustness: heuristics, densities, discretisation, budgets, masks, thresholds",
+   "status": "PASS"
+  },
+  {
+   "requirement": ">= 5 seeds for every stochastic part",
+   "status": "PASS"
+  },
+  {
+   "requirement": ">= 1,000 bootstrap replicates, block resampling",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Holm correction on the declared confirmatory family",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Small groups: denominators reported, <30 flagged exploratory",
+   "status": "PASS"
+  },
+  {
+   "requirement": "AUROC, AP, balanced accuracy, decision agreement, log loss, Brier, max & groupwise marginal error, TV",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Wall-clock latency measured separately in repeated batches",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Elimination traces, induced cliques, max clique size, evidence propagation shown (\u00a74)",
+   "status": "PASS"
+  },
+  {
+   "requirement": "Synthetic masks / networks labelled SYNTHETIC / SIMULATED",
+   "status": "PASS"
+  }
+ ],
+ "budgets": {
+  "0.5": 11,
+  "0.75": 11,
+  "0.9": 11,
+  "0.95": 25,
+  "0.97": 26,
+  "0.99": 52,
+  "1.0": 258
+ },
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ]
+}

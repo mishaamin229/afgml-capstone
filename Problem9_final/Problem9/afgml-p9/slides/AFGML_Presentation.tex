@@ -1,0 +1,122 @@
+% Compile twice with pdflatex from the repo root. Results come from results/tables/macros.tex (else results/smoke).
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Warsaw}\usecolortheme{default}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,booktabs,tabularx,graphicx,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\definecolor{afgml}{RGB}{22,57,86}
+\setbeamercolor{structure}{fg=afgml}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\newif\ifguidance\guidancefalse
+\newcommand{\help}[1]{\ifguidance\begin{block}{Preparation guidance}\small #1\end{block}\fi}
+\newcommand{\fillin}[1]{[\textit{#1}]}
+\newcommand{\resBanner}{\textcolor{red}{\textbf{NO RESULTS GENERATED YET}}}
+\newcommand{\resMode}{pending}\newcommand{\resNtest}{[pending]}\newcommand{\resBudget}{[pending]}
+\newcommand{\resCapacity}{0.2}\newcommand{\resSeeds}{5}\newcommand{\resNboot}{1000}
+\newcommand{\resEffectGlobal}{[pending]}\newcommand{\resEffectUtil}{[pending]}\newcommand{\resEffectThr}{[pending]}
+\newcommand{\resGapDiff}{[pending]}\newcommand{\resSynGap}{[pending]}\newcommand{\resSynCtrl}{[pending]}
+\newcommand{\resCgm}{[pending]}\newcommand{\resCgmErr}{[pending]}
+\IfFileExists{results/tables/macros.tex}{\input{results/tables/macros.tex}\def\resdir{results}}
+ {\IfFileExists{results/smoke/tables/macros.tex}{\input{results/smoke/tables/macros.tex}\def\resdir{results/smoke}}{\def\resdir{results}}}
+\title[AFGML Capstone]{Fairness Preservation under Computational Budgets in Probabilistic Decision Systems}
+\subtitle{ICT 5143: AFGML Capstone | Problem 9}
+\author{\fillin{Student 1, roll number} \and \fillin{Student 2, roll number}}
+\date{\fillin{Evaluation date}}
+\begin{document}
+\begin{frame}\titlepage\resBanner\end{frame}
+
+\begin{frame}{Research question and decision context}
+\begin{itemize}
+\item Context: bank outreach scored by a Bayesian network under a compute limit; affected: customers, outreach teams, serving engineers, auditors.
+\item $Y=1$: recorded term-deposit subscription; $D=1$: selected for \emph{hypothetical} pre-contact outreach (capacity \resCapacity).
+\item Question: at a fixed operation budget, does fairness-aware fallback selection give smaller $\Delta_{\mathrm{EOpp}}$ than a global fallback, utility-only selection and post-budget threshold adjustment?
+\item Hypothesis: yes, at $\le0.01$ AP loss; refuted if a Holm-adjusted paired 95\% interval contains $0$ or is positive.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Closest work and proposed contribution}
+\begin{itemize}
+\item Established: compute reductions can create group disparities (Das et al., ICML 2024; Hooker et al. 2020) --- neural models, accuracy parity.
+\item Open issue: no verified study found for budget-triggered \emph{approximate PGM inference} and decision fairness (search to be extended).
+\item Contribution: operation-count budgets with evidence-dependent trips; simulation isolating group-dependent evidence availability (with control); fairness-aware fallback selection.
+\item Evidence: comparison with global fallback, utility-only selection, Hardt-style post-processing; ablations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Data and evaluation population}
+\begin{itemize}
+\item UCI Bank Marketing (dataset 222), \texttt{bank-additional-full.csv}; $Y=1$ iff \texttt{y = yes}; pre-contact variables only (\textbf{no \texttt{duration}}).
+\item Protected: age band ($<30$, $30$--$59$, $\ge60$) $\times$ marital status (audit only).
+\item Split: positional 60/20/20 (date-ordered release); test size \resNtest; no customer ids.
+\item Model inputs: age band, job, education, default, housing, loan, pdays bin, previous bin, poutcome; \texttt{unknown} $\Rightarrow$ unobserved.
+\item Groups with $<30$ relevant observations: exploratory (see backup).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Graphical model and inference}
+\begin{center}\input{docs/bn_diagram_tikz.tex}\end{center}
+\vspace{-3mm}
+\begin{itemize}\footnotesize
+\item No latent variables; unobserved evidence plays the role of the mask $R$. Query $P(Y{=}1\mid e)$ by VE (min-fill/min-weight/min-degree) and clique tree; cost = factor-entry multiplications + additions.
+\item Validation: VE vs clique tree vs enumeration: \resCgm, max error \resCgmErr\ (tolerance $10^{-6}$).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Fairness criterion and proposed method}
+\begin{itemize}
+\item Primary: $\Delta_{\mathrm{EOpp}}=\max_g t_g-\min_g t_g$, $t_g=P(D{=}1\mid Y{=}1,G{=}g)$; a missed responder is the harm. Diagnostics: $\Delta_{\mathrm{DP}}$, $\Delta_{\mathrm{EOdds}}$, fallback-rate gap, decision flips vs exact, calibration.
+\item Utility: AP; allowed loss $0.01$ (validation-selected).
+\item Change: if exact elimination would exceed budget $B$ ops $\Rightarrow$ table lookup. Proposed pick: $f^\star=\arg\min_f \max_g \mathrm{flip}_g(f)$ s.t.\ $\mathrm{AP\ loss}(f)\le0.01$.
+\item Protected attribute at prediction time: age band is a model variable (yes); routing is group-unaware; marital status unused by models.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Experimental protocol}
+\begin{itemize}
+\item Baselines: exact; global fallback; threshold adjustment after budgeted inference; fair-adjusted exact; LR; GBT.
+\item Same variables, splits, tuning; thresholds/tables/selection from train+validation; test frozen.
+\item Budgets: quantiles of natural validation op counts (primary 75\%: \resBudget\ ops); wall-clock separate.
+\item Runs: \resSeeds\ seeds; paired block-bootstrap (\resNboot\ reps, date blocks); Holm over 3 comparisons.
+\item Mechanism: synthetic networks (width $\times$ availability, with control); ablations; robustness.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Main result and uncertainty}
+{\small\resBanner}
+\begin{center}\small\def\tablewidth{0.9\linewidth}
+\IfFileExists{\resdir/tables/main_table.tex}{\input{\resdir/tables/main_table.tex}}{\begin{tabularx}{0.9\linewidth}{Xccc}\toprule Method & AP & $\Delta_{\mathrm{EOpp}}$ & Log loss / Brier\\\midrule Baseline & [pending] & [pending] & [pending]\\ Proposed & [pending] & [pending] & [pending]\\\bottomrule\end{tabularx}}\end{center}
+\footnotesize \textbf{Paired $\Delta_{\mathrm{EOpp}}$ effects (proposed $-$ comparator), 95\% interval:} global \resEffectGlobal; utility-only \resEffectUtil; threshold adj.\ \resEffectThr.\\
+\textbf{Answer:} \fillin{bounded finding after real run}
+\end{frame}
+
+\begin{frame}{Ablation, robustness and failure case}
+\begin{itemize}
+\item Ablations: utility-only selection; global fallback; no evidence-based simplification; generous budget.
+\item Simulation: fallback-gap difference (dependent vs.\ independent availability) \resSynGap\ vs.\ control gap \resSynCtrl.
+\item Robustness: elimination orders, densities, discretisation, capacities, masks.
+\item Failure case / interpretation: \fillin{from real results; sampling vs.\ scenario uncertainty}
+\end{itemize}
+\IfFileExists{\resdir/figures/fig_synthetic_mechanism.png}{\centering\includegraphics[height=0.33\textheight]{\resdir/figures/fig_synthetic_mechanism.png}}{}
+\end{frame}
+
+\begin{frame}{Conclusion and reproducibility}
+\begin{itemize}
+\item Conclusion: \fillin{one supported answer}
+\item Limits and ethics: synthetic masks/networks are simulations; rows $\neq$ customers; contacted-only sample.
+\item Reproduce: \texttt{python scripts/run\_experiments.py --mode real}, \texttt{evaluate.py}, \texttt{make\_results.py}; configs in \texttt{configs/}.
+\item Student 1: \fillin{contribution and verification}\quad Student 2: \fillin{contribution and verification}
+\end{itemize}
+\end{frame}
+\appendix
+\begin{frame}{Backup: mandatory evidence and references}
+\small Requirement-to-result matrix: \texttt{docs/requirements\_matrix.md}; manifest: \texttt{results/manifest.csv}.\\
+Das, Romanelli, Fioretto (ICML 2024); Hooker et al.\ (2020); Hardt, Price, Srebro (NeurIPS 2016); Moro, Rita, Cortez (UCI 222); Koller \& Friedman (2009). Full table: \texttt{docs/related\_work.md}.
+\end{frame}
+\begin{frame}{Backup: inference and statistical validation}
+\small Normalization, scopes, evidence and exact agreement: \texttt{tests/test\_cgm.py}, \texttt{results/metrics/exp1\_exact\_agreement.json}. Denominators: \texttt{group\_denominators.csv}, \texttt{group\_table.csv}. Bootstrap: fixed-model paired moving blocks (length 50); Holm family = 3 confirmatory comparisons.
+\end{frame}
+\begin{frame}{Backup: demonstration and individual defence}
+\small Command: \texttt{python scripts/run\_experiments.py --mode smoke --quick --out results/demo} (synthetic, $\approx$1 min); expected: figures/tables/macros in \texttt{results/demo}. Saved fallback trace: \texttt{results/smoke/}. Be ready to trace one VE op count, justify EOpp, and critique a claim.
+\end{frame}
+\end{document}

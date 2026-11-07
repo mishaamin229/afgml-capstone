@@ -1,0 +1,13 @@
+# Prespecified BN structure (child: parents). Fixed before any test inspection.
+alpha: 1.0            # Dirichlet smoothing, fit on train only
+structure:
+  age_band: []
+  education: [age_band]
+  job: [age_band, education]
+  default: [job]
+  housing: [age_band]
+  loan: [housing]
+  pdays_bin: []
+  previous_bin: [pdays_bin]
+  poutcome: [previous_bin, pdays_bin]
+  y: [age_band, job, housing, loan, poutcome, pdays_bin]

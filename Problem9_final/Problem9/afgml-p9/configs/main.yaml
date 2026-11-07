@@ -1,0 +1,33 @@
+# Frozen experiment configuration (Problem 9). Edit only before inspecting test outcomes.
+capacity: 0.20                     # primary outreach capacity (fraction selected)
+capacities_robust: [0.10, 0.30]
+budget_quantiles: [0.50, 0.75, 0.90, 0.95, 0.97, 0.99, 1.00]   # of NATURAL validation exact op counts
+primary_budget_quantile: 0.75
+heuristic: min_fill
+heuristics_compare: [min_weight, min_degree]
+primary_utility: ap                # preregistered primary predictive metric (average precision)
+utility_loss_tol: 0.01             # allowed absolute AP loss vs exact when selecting a fallback
+primary_fairness: dEOpp
+min_group_support: 30
+seeds: [0, 1, 2, 3, 4]             # synthetic masks, GBT, synthetic networks
+mask_vars: [job, education, default, housing, loan]
+workloads:                         # SYNTHETIC evidence masks (natural 'unknown' always applies)
+  dependent: {rates_by_band: [0.40, 0.10, 0.10]}   # per age band, in label order
+  independent: {matched: true}                      # same overall masking rate, group-independent
+fallbacks:
+  prior:         {subset: []}
+  blanket_small: {subset: [poutcome, pdays_bin]}
+  blanket_medium: {subset: [poutcome, pdays_bin, job, housing, loan]}
+  age_prior:     {subset: [age_band], uses_protected: true}
+bootstrap: {n_boot: 1000, block_len: 50, alpha: 0.05}
+confirmatory_family: [global_prior, util_sel, thr_adj_post_budget]   # proposed vs each, dEOpp, Holm
+synthetic:
+  widths: [2, 3, 4]
+  availability: [0.9, 0.5]
+  n_vars: 11
+robust_data:                       # alternative discretisation
+  age_bands: {cuts: [35, 65], labels: ["<35", "35-64", ">=65"]}
+robust_structures:                 # alternative network densities (child: parents overrides)
+  sparse: {y: [age_band, poutcome, pdays_bin]}
+  dense: {y: [age_band, job, education, default, housing, loan, poutcome, pdays_bin], job: [age_band, education, housing]}
+latency: {batches: 5, queries_per_batch: 300}

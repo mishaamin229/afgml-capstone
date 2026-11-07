@@ -1,0 +1,6 @@
+# Statistical protocol (frozen). Resampling unit = contiguous date-ordered blocks of the
+# test set (customer IDs are absent, so repeated-customer dependence cannot be controlled).
+bootstrap: {n_boot: 1000, block_len: 50, alpha: 0.05}
+confirmatory: {workload: natural, family: [global_prior, util_sel, thr_adj_post_budget],
+               metric: dEOpp, correction: holm}
+tolerance_cgm: 1.0e-6

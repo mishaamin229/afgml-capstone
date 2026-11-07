@@ -1,0 +1,15 @@
+workload,kind,comparison,confirmatory,metric,estimate,lo,hi,n_boot,n_nan,block_len,p_two_sided,p_holm,n_test
+natural,proposed_minus_comparator,proposed - global_prior,True,dEOpp (negative favours proposed),0.0,-0.125,0.0,1000,0,50,1.0,1.0,1600
+natural,proposed_minus_comparator,proposed - util_sel,True,dEOpp (negative favours proposed),0.0,0.0,0.0,1000,0,50,1.0,1.0,1600
+natural,proposed_minus_comparator,proposed - thr_adj_post_budget,True,dEOpp (negative favours proposed),0.0,0.0,0.048373015873015686,1000,0,50,1.0,1.0,1600
+natural,degradation_vs_exact,global_prior - exact,False,dEOpp degradation,0.0,0.0,0.1428571428571428,1000,0,50,1.0,,1600
+natural,degradation_vs_exact,proposed - exact,False,dEOpp degradation,0.0,0.0,0.0,1000,0,50,1.0,,1600
+natural,degradation_vs_exact,util_sel - exact,False,dEOpp degradation,0.0,0.0,0.0,1000,0,50,1.0,,1600
+natural,degradation_vs_exact,thr_adj_post_budget - exact,False,dEOpp degradation,0.0,0.0,0.0,1000,0,50,1.0,,1600
+dependent,proposed_minus_comparator,proposed - global_prior,False,dEOpp (negative favours proposed),0.375,-0.09535714285714285,0.5277777777777778,1000,0,50,0.2057942057942058,,1600
+dependent,proposed_minus_comparator,proposed - util_sel,False,dEOpp (negative favours proposed),0.0,0.0,0.0,1000,0,50,1.0,,1600
+dependent,proposed_minus_comparator,proposed - thr_adj_post_budget,False,dEOpp (negative favours proposed),0.0,-0.4000961538461539,0.0,1000,0,50,1.0,,1600
+dependent,degradation_vs_exact,global_prior - exact,False,dEOpp degradation,-0.375,-0.5,0.0,1000,0,50,0.16783216783216784,,1600
+dependent,degradation_vs_exact,proposed - exact,False,dEOpp degradation,0.0,-0.25,0.19354838709677424,1000,0,50,1.0,,1600
+dependent,degradation_vs_exact,util_sel - exact,False,dEOpp degradation,0.0,-0.25,0.19354838709677424,1000,0,50,1.0,,1600
+dependent,degradation_vs_exact,thr_adj_post_budget - exact,False,dEOpp degradation,0.0,0.0,0.25,1000,0,50,1.0,,1600

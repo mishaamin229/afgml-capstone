@@ -1,0 +1,28 @@
+{
+ "mode": "smoke",
+ "quick": false,
+ "data_sha256": "SYNTHETIC-FIXTURE",
+ "n": {
+  "train": 4800,
+  "val": 1600,
+  "test": 1600
+ },
+ "budgets_ops": {
+  "0.5": 11,
+  "0.75": 11,
+  "0.9": 11,
+  "0.95": 18,
+  "1.0": 52
+ },
+ "runtime_s": 361,
+ "python": "3.12.3",
+ "platform": "Linux-6.18.44-fc-v300-x86_64-with-glibc2.39",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "synthetic_label": "SYNTHETIC masks/networks are simulated, not facts about customers"
+}

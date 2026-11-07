@@ -1,0 +1,31 @@
+% Planar layout of the Problem 9 Bayesian network (no crossing arrows). Checked programmatically.
+\begin{tikzpicture}[x=1.15cm,y=0.62cm,>=Stealth,
+ var/.style={draw,rounded corners,inner sep=2.5pt,font=\scriptsize,fill=white},
+ target/.style={draw,rounded corners,inner sep=2.5pt,font=\scriptsize,fill=afgml!15,thick},
+ arr/.style={->,shorten >=1pt,shorten <=1pt}]
+\node[var] (A) at (0,4) {age band};
+\node[var] (E) at (1.5,5.3) {education};
+\node[var] (J) at (3,4) {job};
+\node[var] (F) at (4.6,5.3) {default};
+\node[var] (H) at (-1,2) {housing};
+\node[var] (L) at (0.8,-0.6) {loan};
+\node[target] (Y) at (4,0) {$Y$ subscribe};
+\node[var] (Pd) at (7.5,3.5) {pdays};
+\node[var] (O) at (6.5,-0.1) {poutcome};
+\node[var] (Pr) at (9,1.5) {previous};
+\draw[arr] (A) -- (E);
+\draw[arr] (A) -- (J);
+\draw[arr] (E) -- (J);
+\draw[arr] (J) -- (F);
+\draw[arr] (A) -- (H);
+\draw[arr] (H) -- (L);
+\draw[arr] (Pd) -- (Pr);
+\draw[arr] (Pr) -- (O);
+\draw[arr] (Pd) -- (O);
+\draw[arr] (A) -- (Y);
+\draw[arr] (J) -- (Y);
+\draw[arr] (H) -- (Y);
+\draw[arr] (L) -- (Y);
+\draw[arr] (O) -- (Y);
+\draw[arr] (Pd) -- (Y);
+\end{tikzpicture}

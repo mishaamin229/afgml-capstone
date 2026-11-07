@@ -1,0 +1,18 @@
+# Frozen data/split config for Problem 9. Edit BEFORE inspecting test outcomes.
+source_file: data/raw/bank-additional-full.csv   # UCI dataset 222; acquire yourself (see data/README.md)
+sep: ";"
+target: y
+target_positive: "yes"
+# Release is ordered by contact date but has no date column: split is positional.
+split: {train: 0.60, val: 0.20, test: 0.20}
+decision_time: "before the contact call is placed"
+forbidden_substrings: [duration]        # post-contact; also the target itself
+# Variables in the BN (A = age band is the primary protected attribute).
+bn_variables: [age_band, job, education, default, housing, loan, pdays_bin, previous_bin, poutcome]
+# DECLARED CHOICES (revisit deliberately, do not tune on test):
+include_macro_columns: false   # emp.var.rate, cons.price.idx, cons.conf.idx, euribor3m, nr.employed
+include_calendar_columns: false  # month, day_of_week (calendar proxies for time/campaign wave)
+marital_in_model: false        # marital used ONLY to define audit groups
+unknown_as_masked: true        # 'unknown' -> observed-evidence mask R_j = 0 (unobserved)
+age_bands: {cuts: [30, 60], labels: ["<30", "30-59", ">=60"]}
+min_group_support: 30

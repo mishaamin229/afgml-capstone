@@ -1,0 +1,10 @@
+{
+ "file": "/content/afgml-p9/data/raw/bank-additional-full.csv",
+ "sha256": "74adfc578bf77a7ff4bb1ba4a9f8709d9e3c6907342959c2c8416847e0afb4d8",
+ "rows": 41188,
+ "cols": 21,
+ "n_yes": 4640,
+ "accessed": "2026-11-07",
+ "source": "UCI Bank Marketing, dataset 222 (Moro, Rita, Cortez), CC BY 4.0",
+ "matches_published_uci_counts": true
+}

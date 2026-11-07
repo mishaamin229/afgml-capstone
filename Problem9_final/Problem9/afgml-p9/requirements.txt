@@ -1,0 +1,12 @@
+# Tested with Python 3.12 (Linux). Windows/macOS: any Python >= 3.10 should work; versions below were the tested ones.
+numpy==2.5.4
+pandas==3.0.6
+scikit-learn==1.9.1
+scipy==1.18.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+pytest==9.2.0
+# notebook (optional)
+nbformat==5.11.1
+nbconvert==7.17.2
+ipykernel==7.4.0

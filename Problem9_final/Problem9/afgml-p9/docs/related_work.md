@@ -1,0 +1,18 @@
+# Related work and closest method
+
+Entries 1–3 were located by search and their abstracts read while building this project; entries 4–10 are from the course reference list (re-read before citing details). **You must still read the full texts and extend this table.** A search for fairness + budgeted/approximate *probabilistic-graphical-model* inference surfaced no direct prior; absence from a quick search is not proof — expand the search (Google Scholar, arXiv) before claiming novelty, and narrow the contribution if a prior work answers the question.
+
+| # | Reference | Setting / assumptions | Data | Graphical model | Fairness notion | Inference / compute | Limitation for us |
+|---|---|---|---|---|---|---|---|
+| 1 | Das, Romanelli, Fioretto. *Disparate Impact on Group Accuracy of Linearization for Private Inference.* ICML 2024 (arXiv:2402.03629) | Reducing ReLU count for cryptographic inference lowers cost | image classification | none (neural nets) | accuracy parity | ReLU budget/linearisation | Closest *conceptual* neighbour (compute budget → group disparity); different model class, not reproducible as our baseline |
+| 2 | Sandler, Üstün, Romanelli. *The Disparate Impacts of Speculative Decoding.* arXiv:2510.02128 (2025) | LLM speculative decoding speed-ups vary by task | LLM tasks | none | computational (speed-up) inequity | drafter/verifier | Latency inequity, not decision fairness |
+| 3 | Hooker, Moorosi, Clark, Bengio, Denton. *Characterising Bias in Compressed Models.* arXiv:2010.03058 (2020) | pruning/quantisation | vision | none | error on under-represented groups | model compression | Deep nets; no exact-inference reference |
+| 4 | Hardt, Price, Srebro. *Equality of Opportunity in Supervised Learning.* NeurIPS 2016 | post-processing of scores | several | none | equality of opportunity / equalized odds | group thresholds | **Reproduced baseline** (`src/fairness.py`) |
+| 5 | Feng, Calmon, Wang. *Adapting Fairness Interventions to Missing Values.* NeurIPS 2023 | missing feature values | tabular | none | group fairness | impute / mask | Motivates evidence availability as a fairness factor |
+| 6 | Agarwal et al. *A Reductions Approach to Fair Classification.* ICML 2018 | constrained learning | tabular | none | DP / EO | reductions | Training-time method; not used (documented) |
+| 7 | Kearns, Neel, Roth, Wu. *Preventing Fairness Gerrymandering.* ICML 2018 | subgroup auditing | tabular | none | rich subgroup fairness | auditing | Motivates intersectional audit & small-cell caution |
+| 8 | Foulds, Islam, Keya, Pan. *Bayesian Modeling of Intersectional Fairness.* arXiv:1811.07255 | hierarchical pooling | tabular | hierarchical Bayes | differential fairness | posterior | Small-group estimation (we report exploratory flags instead) |
+| 9 | Koller, Friedman. *Probabilistic Graphical Models.* MIT Press, 2009 | — | — | BN, clique trees | — | VE, belief propagation, complexity | Algorithms implemented from scratch |
+| 10 | Moro, Rita, Cortez. *Bank Marketing.* UCI ML Repository (dataset 222) | — | bank-additional-full | — | — | — | Data source; date-ordered; no customer id |
+
+**Closest method.** Conceptually Das et al. (1). Because it cannot be reproduced on a Bayesian network, the *reproduced baselines* are (a) exact unrestricted inference as the reference, (b) Hardt et al. post-processing after budgeted inference, and (c) a single global fallback — a documented restricted reproduction. The bounded difference: a deterministic operation-count budget with an evidence-dependent trip rule, and fallback selection by validation worst-group deviation from the exact decisions.

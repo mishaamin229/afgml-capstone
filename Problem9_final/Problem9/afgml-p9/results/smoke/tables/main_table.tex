@@ -1,0 +1,11 @@
+\begin{tabularx}{\tablewidth}{Xccc}
+\toprule
+Method & AP $\uparrow$ & $\Delta_{\mathrm{EOpp}}$ $\downarrow$ & Log loss / Brier $\downarrow$\\
+\midrule
+Exact (reference) & 0.229 & 0.309 & 0.288 / 0.078\\
+Global fallback & 0.212 & 0.258 & 0.292 / 0.079\\
+Proposed (fair selection) & 0.231 & 0.309 & 0.288 / 0.078\\
+Utility-only selection & 0.231 & 0.309 & 0.288 / 0.078\\
+Threshold adj. after budget & 0.212 & 0.171 & 0.292 / 0.079\\
+\bottomrule
+\end{tabularx}

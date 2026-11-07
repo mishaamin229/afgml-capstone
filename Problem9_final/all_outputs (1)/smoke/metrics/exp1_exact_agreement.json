@@ -1,0 +1,22 @@
+{
+ "natural": {
+  "max_err_across_orders": 1.1102230246251565e-16,
+  "max_err_ve_vs_clique_tree": 2.220446049250313e-16,
+  "max_err_vs_enumeration": 1.1102230246251565e-16,
+  "max_err_p_evidence": 2.7755575615628914e-17,
+  "tolerance": 1e-06,
+  "passed": true,
+  "n_patterns": 300,
+  "n_enumeration": 30
+ },
+ "synthetic_dependent_mask": {
+  "max_err_across_orders": 2.220446049250313e-16,
+  "max_err_ve_vs_clique_tree": 2.220446049250313e-16,
+  "max_err_vs_enumeration": 1.1102230246251565e-16,
+  "max_err_p_evidence": 1.6653345369377348e-16,
+  "tolerance": 1e-06,
+  "passed": true,
+  "n_patterns": 300,
+  "n_enumeration": 30
+ }
+}

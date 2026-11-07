@@ -1,0 +1,27 @@
+workload,kind,comparison,confirmatory,metric,n_groups_used,estimate,lo,hi,n_boot,n_nan,block_len,p_two_sided,p_holm,n_test
+natural,proposed_minus_comparator,proposed - global_prior,True,"dEOpp, supported groups (negative favours proposed)",7,0.11989230281913216,0.014570018710218423,0.225979405342535,1000,0,50,0.017982017982017984,0.03596403596403597,8238
+natural,sensitivity_all_groups,proposed - global_prior,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,-0.16666666666666663,-0.38470715835140995,0.5538461538461539,1000,0,50,1.0,,8238
+natural,proposed_minus_comparator,proposed - util_sel,True,"dEOpp, supported groups (negative favours proposed)",7,-0.29439341146658216,-0.3695221525154404,-0.21008042763281215,1000,0,50,0.001998001998001998,0.005994005994005994,8238
+natural,sensitivity_all_groups,proposed - util_sel,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,-0.16666666666666663,-0.4001508120649652,0.0,1000,0,50,1.0,,8238
+natural,proposed_minus_comparator,proposed - thr_adj_post_budget,True,"dEOpp, supported groups (negative favours proposed)",7,0.10585999366487181,-0.006023443010474834,0.2509415867765887,1000,0,50,0.07992007992007992,0.07992007992007992,8238
+natural,sensitivity_all_groups,proposed - thr_adj_post_budget,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,-0.16666666666666663,-0.38470715835140995,0.5286482820976491,1000,0,50,1.0,,8238
+natural,exploratory_unaware,proposed_unaware - proposed,False,"dEOpp, supported groups (negative favours first)",7,0.0,0.0,0.0,1000,0,50,1.0,,8238
+natural,exploratory_unaware,proposed_unaware - global_prior,False,"dEOpp, supported groups (negative favours first)",7,0.11989230281913216,0.011993620535230731,0.2285441359242262,1000,0,50,0.023976023976023976,,8238
+natural,degradation_vs_exact,global_prior - exact,False,"dEOpp degradation, supported groups",7,-0.161767500791891,-0.265110846048771,-0.05526391153966731,1000,0,50,0.005994005994005994,,8238
+natural,degradation_vs_exact,proposed - exact,False,"dEOpp degradation, supported groups",7,-0.04187519797275885,-0.08162778575342941,-0.006283897334046295,1000,0,50,0.023976023976023976,,8238
+natural,degradation_vs_exact,proposed_unaware - exact,False,"dEOpp degradation, supported groups",7,-0.04187519797275885,-0.08162778575342941,-0.006283897334046295,1000,0,50,0.023976023976023976,,8238
+natural,degradation_vs_exact,util_sel - exact,False,"dEOpp degradation, supported groups",7,0.2525182134938233,0.18264055068625787,0.3259775885543299,1000,0,50,0.001998001998001998,,8238
+natural,degradation_vs_exact,thr_adj_post_budget - exact,False,"dEOpp degradation, supported groups",7,-0.14773519163763066,-0.2885122706321537,-0.02053100100359654,1000,0,50,0.02197802197802198,,8238
+dependent,proposed_minus_comparator,proposed - global_prior,False,"dEOpp, supported groups (negative favours proposed)",7,0.6142857142857143,0.5,0.6981875901875902,1000,0,50,0.001998001998001998,,8238
+dependent,sensitivity_all_groups,proposed - global_prior,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,0.6571428571428571,0.5164950980392157,0.720006993006993,1000,0,50,0.005994005994005994,,8238
+dependent,proposed_minus_comparator,proposed - util_sel,False,"dEOpp, supported groups (negative favours proposed)",7,0.0,0.0,0.0,1000,0,50,1.0,,8238
+dependent,sensitivity_all_groups,proposed - util_sel,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,0.0,0.0,0.0,1000,0,50,1.0,,8238
+dependent,proposed_minus_comparator,proposed - thr_adj_post_budget,False,"dEOpp, supported groups (negative favours proposed)",7,0.02217387232264445,-0.03292843666453126,0.07444079193372019,1000,0,50,0.44155844155844154,,8238
+dependent,sensitivity_all_groups,proposed - thr_adj_post_budget,False,"dEOpp, ALL groups incl. exploratory (sensitivity)",12,0.07768924302788849,-0.027055576703463972,0.0967802118440058,1000,0,50,0.3156843156843157,,8238
+dependent,exploratory_unaware,proposed_unaware - proposed,False,"dEOpp, supported groups (negative favours first)",7,-0.6086278031940274,-0.6846402563269924,-0.48850746557604957,1000,0,50,0.001998001998001998,,8238
+dependent,exploratory_unaware,proposed_unaware - global_prior,False,"dEOpp, supported groups (negative favours first)",7,0.005657911091686951,-0.08767830703646769,0.13234734945333992,1000,0,50,0.7072927072927073,,8238
+dependent,degradation_vs_exact,global_prior - exact,False,"dEOpp degradation, supported groups",7,-0.12117897539323902,-0.2400210887833972,-7.735773277825863e-05,1000,0,50,0.04995004995004995,,8238
+dependent,degradation_vs_exact,proposed - exact,False,"dEOpp degradation, supported groups",7,0.49310673889247536,0.39674362007541303,0.5690582906755044,1000,0,50,0.001998001998001998,,8238
+dependent,degradation_vs_exact,proposed_unaware - exact,False,"dEOpp degradation, supported groups",7,-0.11552106430155207,-0.16866219755458503,-0.04157408616468235,1000,0,50,0.003996003996003996,,8238
+dependent,degradation_vs_exact,util_sel - exact,False,"dEOpp degradation, supported groups",7,0.49310673889247536,0.39674362007541303,0.5690582906755044,1000,0,50,0.001998001998001998,,8238
+dependent,degradation_vs_exact,thr_adj_post_budget - exact,False,"dEOpp degradation, supported groups",7,0.4709328665698309,0.3645181142916395,0.5477050569658403,1000,0,50,0.001998001998001998,,8238
